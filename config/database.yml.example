@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  database: DaK_dev
+  pool: 5
+  timeout: 5000
+  username: ****
+  password: ****
+
+
+test:
+  adapter: postgresql
+  database: DaK_test
+  pool: 5
+  timeout: 5000
+  username: ****
+  password: ****
