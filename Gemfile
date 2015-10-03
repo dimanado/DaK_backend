@@ -7,19 +7,21 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'pry-rails'
+gem 'jbuilder'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'pry-byebug'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'pry-rails'
-  gem 'pry-byebug'
+  #gem 'pry-rails'
   gem 'database_cleaner'
   gem 'timecop'
   gem 'simplecov', require: false
