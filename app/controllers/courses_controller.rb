@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses=current_user.courses
-    render json: {}, status: :ok
   end
 
   def create
