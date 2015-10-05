@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   def create
     if course=Course.create(params.permit(:name))
       current_user.courses<<course
-      render json: {}, status: :ok
+      render_blank_success
     else
       render json: {error: 'Course not create'}, status: 400
     end
