@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
            status: status, head: status
   end
 
-  def render_blank_success
-    render json: {}, status: :ok
+  def render_success
+    render json: {success: true}, status: :ok
   end
 
   def invalid_params(exception)
