@@ -9,6 +9,7 @@ gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'pry-rails'
 gem 'jbuilder'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
