@@ -10,6 +10,8 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'pry-rails'
 gem 'jbuilder'
 gem 'active_model_serializers'
+gem 'carrierwave'
+gem 'carrierwave-video'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
