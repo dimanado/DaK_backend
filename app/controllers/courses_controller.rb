@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:all_courses]
 
   def index
     @courses=current_user.courses
@@ -13,6 +13,11 @@ class CoursesController < ApplicationController
     else
       render json: {error: 'Course not create'}, status: 400
     end
+  end
+
+  def all_courses
+    @courses=Course.all
+    render json: @courses, each_serializer: CourseSerializer
   end
 
 end
