@@ -9,7 +9,6 @@ class VideoController < ApplicationController
   end
 
   def create
-    # binding.pry
     video = @course.videos.new(video_params)
     if video.save
       render_success
