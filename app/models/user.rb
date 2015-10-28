@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  #user, admin, lecturer
   rolify
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
