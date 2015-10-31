@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   #user, admin, lecturer
   rolify
-  # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
@@ -9,5 +8,13 @@ class User < ActiveRecord::Base
 
   has_many :courses
   belongs_to :role
+
+  before_create :default_users_role
+
+  private
+
+  def default_users_role
+    add_role :user
+  end
 
 end
