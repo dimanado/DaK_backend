@@ -3,9 +3,9 @@ class CoursesController < ApplicationController
 
   def index
     if params[:all]
-      @courses=Course.all
+      @courses = Course.all
     else
-      @courses=current_user.courses
+      @courses = policy_scope(:Courses)
     end
     render json: @courses, each_serializer: CourseSerializer
   end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :video
   resources :users, only: [:show]
   resources :subscriptions, only: [] do
-    collection do
+    member do
       post 'add_course'
     end
   end
