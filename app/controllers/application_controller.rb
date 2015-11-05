@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   def render_error_messages(object, status=:unprocessable_entity)
-    render json: { :errors => object.errors.messages, :fields=>object.errors.keys },
+    render json: { :errors => object.errors.messages, :fields => object.errors.keys },
            status: status, head: status
   end
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :subscriptions, only: [] do
     member do
       post 'add_course'
+      get 'check_status'
     end
   end
 end
