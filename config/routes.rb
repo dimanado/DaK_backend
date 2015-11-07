@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'course/index'
 
   mount_devise_token_auth_for 'User', at: 'auth'
 
-  resources :courses, format: 'json' do
-    collection do
-      get 'all_courses'
+  resources :courses
+  resources :video
+  resources :users, only: [:show]
+  resources :subscriptions, only: [] do
+    member do
+      post 'add_course'
+      get 'check_status'
     end
   end
-  resources :video, format: 'json'
 end

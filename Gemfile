@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.2'
 gem 'pg'
-
+gem 'rolify'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
@@ -12,6 +12,7 @@ gem 'jbuilder'
 gem 'active_model_serializers'
 gem 'carrierwave'
 gem 'carrierwave-video'
+gem 'pundit'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'

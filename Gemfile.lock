@@ -124,6 +124,8 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    pundit (1.0.1)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -155,6 +157,7 @@ GEM
     rake (10.4.2)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rolify (4.1.1)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -228,8 +231,10 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-rails
+  pundit
   rack-cors
   rails (= 4.2.2)
+  rolify
   rspec-rails
   selenium-webdriver
   simplecov
