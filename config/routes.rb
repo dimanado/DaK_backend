@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   resources :courses
   resources :video
-  resources :users, only: [:show]
+  resources :users, only: [:show,:update]
 end

@@ -1,5 +1,6 @@
 class UsersSerializer < ActiveModel::Serializer
-  attributes :id, :email, :role
+  has_many :attaches
+  attributes :id, :email, :role, :name, :nickname
   def role
     object.roles.first.name
   end
