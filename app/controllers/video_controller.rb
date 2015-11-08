@@ -1,5 +1,4 @@
 class VideoController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_course, only: [:index, :create]
   before_action :set_video, only: [:show]
 
