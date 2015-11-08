@@ -26,7 +26,8 @@ class VideoController < ApplicationController
   private
 
   def video_params
-    { video: params[:file].tempfile, format: params[:file].content_type, name:params[:name] }
+    { video: params[:file].tempfile, format: params[:file].content_type,
+      name: params[:name], description: params[:description]}
   end
 
   def set_course
