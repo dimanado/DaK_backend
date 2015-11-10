@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
-  before_action :authenticate_user!
-
   def render_error_messages(object, status = :unprocessable_entity)
     render json: { errors: object.errors.messages, fields: object.errors.keys },
            status: status, head: status

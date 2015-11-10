@@ -1,6 +1,7 @@
 class VideoController < ApplicationController
   before_action :set_course, only: [:index, :create]
   before_action :set_video, only: [:show]
+  before_action :authenticate_user!, except: [ :index ]
 
   def index
     @videos = @course.videos

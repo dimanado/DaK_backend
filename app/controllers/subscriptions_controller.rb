@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!
 
   def add_course
     unless current_user.subscription.courses.find_by(id: course_id)
