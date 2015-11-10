@@ -1,3 +1,3 @@
 class VideoNameSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :description
 end
