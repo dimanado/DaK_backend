@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.permit(:name)
+    params.permit(:name, :description)
   end
 
   def image_params

@@ -5,7 +5,8 @@ class VideoController < ApplicationController
 
   def index
     @videos = @course.videos
-    render json: @videos, each_serializer: VideoNameSerializer
+    render json: @videos, each_serializer: VideoNameSerializer,
+           meta: @course.video_meta
   end
 
   def create
