@@ -10,7 +10,11 @@ class VideoController < ApplicationController
 
   def create
     video = @course.videos.new(video_params)
-    if video.save
+    image = Image.new(file: image_params)
+    if !image.save
+      render_error_messages(image, 400)
+    elsif video.save
+      video.image = image
       render_success
     else
       render_error_messages(video, 400)
@@ -28,6 +32,10 @@ class VideoController < ApplicationController
   def video_params
     { video: params[:file].tempfile, format: params[:file].content_type,
       name: params[:name], description: params[:description]}
+  end
+
+  def image_params
+    params[:image].tempfile
   end
 
   def set_course

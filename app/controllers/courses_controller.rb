@@ -13,7 +13,11 @@ class CoursesController < ApplicationController
   def create
     authorize :courses, :create?
     course = current_user.courses.new(course_params)
-    if course.save
+    image = Image.new(file: image_params)
+    if !image.save
+      render_error_messages(image, 400)
+    elsif course.save
+      course.image = image
       render_success
     else
       render_error_messages(course, 400)
@@ -24,6 +28,10 @@ class CoursesController < ApplicationController
 
   def course_params
     params.permit(:name)
+  end
+
+  def image_params
+    params[:image].tempfile
   end
 
 end
