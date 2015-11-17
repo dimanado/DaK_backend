@@ -11,8 +11,10 @@ class SubscriptionsController < ApplicationController
   end
 
   def check_status
-    if current_user.subscription.courses.find(course_id)
+    if current_user.subscription.courses.find_by(id: course_id)
       render_success
+    else
+      render_success(false)
     end
   end
 
