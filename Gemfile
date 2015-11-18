@@ -13,6 +13,8 @@ gem 'active_model_serializers'
 gem 'carrierwave'
 gem 'carrierwave-video'
 gem 'pundit'
+gem 'thin'
+gem 'websocket-rails'
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
