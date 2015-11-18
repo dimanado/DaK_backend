@@ -15,6 +15,9 @@ gem 'carrierwave-video'
 gem 'pundit'
 gem 'thin'
 gem 'websocket-rails'
+gem 'config'
+gem 'mini_magick'
+
 
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
@@ -27,7 +30,6 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
-  #gem 'pry-rails'
   gem 'database_cleaner'
   gem 'timecop'
   gem 'simplecov', require: false
