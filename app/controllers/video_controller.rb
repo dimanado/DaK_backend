@@ -11,7 +11,7 @@ class VideoController < ApplicationController
 
   def create
     video = @course.videos.new(video_params)
-    video.image.new(file: image_params)
+    video.build_image(file: image_params)
     if video.save
       render_success
     else
