@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
       #TODO: mode params[:all] to scope policies
       @courses = Course.all
     else
+      authorize :courses
       @courses = policy_scope(:Courses)
     end
     render json: @courses, each_serializer: CourseSerializer

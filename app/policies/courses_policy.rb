@@ -11,4 +11,8 @@ class CoursesPolicy < ApplicationPolicy
   def create?
     user.has_role? :lecturer
   end
+
+  def index?
+    user.present?
+  end
 end
