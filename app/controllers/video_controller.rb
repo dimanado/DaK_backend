@@ -23,8 +23,6 @@ class VideoController < ApplicationController
     render json: @video, serializer: VideoSerializer
   end
 
-
-
   private
 
   def video_params
