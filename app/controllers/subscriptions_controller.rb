@@ -1,7 +1,8 @@
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
-  def add_course #TODO pay attention here
+  def add_course
+
     # subscription = Subscription.new(course_id: course_id, user: current_user.id)
     # if subscription.save
     # else

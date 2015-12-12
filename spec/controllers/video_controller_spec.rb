@@ -106,7 +106,7 @@ RSpec.describe VideoController, :type => :controller do
     let!(:video) { FactoryGirl.create(:video_with_image) }
 
     context 'when user loged in' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryGirl.create(:lecturer) }
 
       before do
         sign_in(user)

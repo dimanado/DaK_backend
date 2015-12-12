@@ -10,6 +10,7 @@ class VideoController < ApplicationController
   end
 
   def create
+    authorize Video.new
     video = @course.videos.new(video_params)
     video.build_image(file: image_params)
     if video.save

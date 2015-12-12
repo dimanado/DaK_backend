@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     after(:create) do |user|
       user.add_role(:user)
-      user.confirm!
+      # user.confirm!
     end
 
     factory :user_with_course do

@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    authorize :courses, :create?
+    authorize :courses
     course = current_user.courses.new(course_params)
     course.build_image(file: image_params)
     if course.save
