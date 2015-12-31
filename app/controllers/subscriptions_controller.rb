@@ -2,13 +2,6 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def add_course
-
-    # subscription = Subscription.new(course_id: course_id, user: current_user.id)
-    # if subscription.save
-    # else
-    #
-    # end
-
     unless current_user.subscription.courses.find_by(id: course_id)
       current_user.subscription.courses << Course.find_by(id: course_id)
       render_success

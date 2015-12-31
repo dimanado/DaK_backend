@@ -113,13 +113,19 @@ RSpec.describe CoursesController, type: :controller do
 
       context 'and has role lecturer ' do
         let(:user) { FactoryGirl.create(:lecturer) }
+        let(:course) { double :course }
+        let(:courses) { double :courses }
         before do
           sign_in(user)
           allow_any_instance_of(Course).
               to receive(:build_image).and_return(true)
           allow_any_instance_of(CoursesController).
               to receive(:image_params).and_return('1')
-          do_request
+          allow(user).to receive(:courses).and_return(courses)
+          allow(courses).to receive(:new).and_return(course)
+          allow(course).to receive(:build_image)
+          allow(course).to receive(:save).and_return(:true)
+          # do_request
         end
 
         it 'should be success' do
@@ -129,9 +135,16 @@ RSpec.describe CoursesController, type: :controller do
         it 'should create course' do
           expect(user.courses.count).to eq(1)
         end
+
+        # it 'should build course' do
+        #   expect(user).to receive(:courses)
+        #   expect(courses).to receive(:new).and_return(course)
+        #   do_request
+        # end
+
       end
 
-      context 'and has role lecturer ' do
+      context 'and has role user ' do
         before do
           sign_in(FactoryGirl.create(:user))
           do_request
@@ -144,8 +157,11 @@ RSpec.describe CoursesController, type: :controller do
         it 'should return 403' do
           expect(response.status).to eq(403)
         end
+
+
       end
     end
+
     context 'when user loged out' do
       before do
         do_request
