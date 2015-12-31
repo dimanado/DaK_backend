@@ -5,11 +5,14 @@ class VideoController < ApplicationController
 
   def index
     @videos = @course.videos
-    render json: @videos, each_serializer: VideoNameSerializer
+    render json: @videos, each_serializer: VideoNameSerializer,
+           meta: @course.video_meta
   end
 
   def create
+    authorize Video.new
     video = @course.videos.new(video_params)
+    video.build_image(file: image_params)
     if video.save
       render_success
     else
@@ -21,13 +24,19 @@ class VideoController < ApplicationController
     render json: @video, serializer: VideoSerializer
   end
 
-
-
   private
 
   def video_params
-    { video: params[:file].tempfile, format: params[:file].content_type,
-      name: params[:name], description: params[:description]}
+    {
+      video: params[:file].tempfile,
+      format: params[:file].content_type,
+      name: params[:name],
+      description: params[:description]
+    }
+  end
+
+  def image_params
+    params[:image].tempfile
   end
 
   def set_course

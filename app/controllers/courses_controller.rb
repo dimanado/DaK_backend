@@ -3,16 +3,22 @@ class CoursesController < ApplicationController
 
   def index
     if params[:all]
+      #TODO: mode params[:all] to scope policies
       @courses = Course.all
     else
+      authorize :courses
       @courses = policy_scope(:Courses)
     end
     render json: @courses, each_serializer: CourseSerializer
   end
 
+  def show
+  end
+
   def create
-    authorize :courses, :create?
+    authorize :courses
     course = current_user.courses.new(course_params)
+    course.build_image(file: image_params)
     if course.save
       render_success
     else
@@ -23,7 +29,11 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.permit(:name)
+    params.permit(:name, :description)
+  end
+
+  def image_params
+    params[:image].tempfile
   end
 
 end
