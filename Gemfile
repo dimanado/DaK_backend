@@ -17,6 +17,7 @@ gem 'thin'
 gem 'websocket-rails'
 gem 'config'
 gem 'mini_magick'
+gem 'acts_as_votable'
 
 
 group :development, :test do
@@ -24,6 +25,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'pry-byebug'
+  gem 'rails-erd'
 end
 
 group :test do

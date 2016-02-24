@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   #user, admin, lecturer
+  acts_as_voter
   rolify
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,

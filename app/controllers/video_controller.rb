@@ -24,6 +24,13 @@ class VideoController < ApplicationController
     render json: @video, serializer: VideoSerializer
   end
 
+  def vote
+    @video = Video.find(params[:id])
+    current_user = User.find_by(name: params[:name])
+    @video.vote_init(current_user, params[:type])
+    render json: @video, serializer: VoteVideoSerializer
+  end
+
   private
 
   def video_params

@@ -9,4 +9,6 @@ class Course < ActiveRecord::Base
     { name: name, description: description,
       image: image.full_url(:course_sketch) }
   end
+
+
 end
