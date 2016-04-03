@@ -3,6 +3,7 @@ class VideoController < ApplicationController
   before_action :set_video, only: [:show]
   before_action :authenticate_user!, except: [ :index ]
 
+
   def index
     @videos = @course.videos
     render json: @videos, each_serializer: VideoNameSerializer,
@@ -22,13 +23,6 @@ class VideoController < ApplicationController
 
   def show
     render json: @video, serializer: VideoSerializer
-  end
-
-  def vote
-    @video = Video.find(params[:id])
-    current_user = User.find_by(name: params[:name])
-    @video.vote_init(current_user, params[:type])
-    render json: @video, serializer: VoteVideoSerializer
   end
 
   private
@@ -53,4 +47,5 @@ class VideoController < ApplicationController
   def set_video
     @video = Video.find(params[:id])
   end
+
 end

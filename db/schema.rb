@@ -11,16 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218084315) do
+ActiveRecord::Schema.define(version: 20160401145328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "root_comment_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "courses", force: :cascade do |t|
-    t.string  "name",        default: "", null: false
-    t.string  "heading"
-    t.text    "description", default: ""
-    t.integer "user_id"
+    t.string   "name",        default: "", null: false
+    t.string   "heading"
+    t.text     "description", default: ""
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id", using: :btree
@@ -60,6 +75,25 @@ ActiveRecord::Schema.define(version: 20160218084315) do
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "name",       null: false
+    t.string   "file",       null: false
+    t.string   "format",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tasks", ["course_id"], name: "index_tasks_on_course_id", using: :btree
+
+  create_table "tasks_users", id: false, force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "user_id"
+  end
+
+  add_index "tasks_users", ["task_id"], name: "index_tasks_users_on_task_id", using: :btree
+  add_index "tasks_users", ["user_id"], name: "index_tasks_users_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "provider",                            null: false
     t.string   "uid",                    default: "", null: false
@@ -77,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160218084315) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "name"
-    t.string   "nickname"
+    t.string   "nickname",                            null: false
     t.string   "image"
     t.string   "email"
     t.text     "tokens"
@@ -97,28 +131,27 @@ ActiveRecord::Schema.define(version: 20160218084315) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string  "video",                    null: false
-    t.integer "course_id"
-    t.string  "name",                     null: false
-    t.string  "format",                   null: false
-    t.text    "description", default: ""
+    t.string   "video",                    null: false
+    t.integer  "course_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "name",                     null: false
+    t.string   "format",                   null: false
+    t.text     "description", default: ""
   end
 
   add_index "videos", ["course_id"], name: "index_videos_on_course_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "vote_flag"
     t.integer  "votable_id"
     t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
 
 end

@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
     course = current_user.courses.new(course_params)
     course.build_image(file: image_params)
     if course.save
+      course.tasks = Task.parsing_to_array(tasks_params)
       render_success
     else
       render_error_messages(course, 400)
@@ -34,6 +35,10 @@ class CoursesController < ApplicationController
 
   def image_params
     params[:image].tempfile
+  end
+
+  def tasks_params
+    params[:tasks].values
   end
 
 end
