@@ -15,3 +15,11 @@ userSecond = User.find_by(email: 'testuser2@mail.ru')
 userSecond.add_role :user
 userSecond.confirm!
 userSecond.save
+
+Category.create( name: 'Mathematics')
+Category.create( name: 'Computer science')
+Category.create( name: 'Logic')
+Category.create( name: 'Physics')
+Category.create( name: 'Chemistry')
+Category.create( name: 'Art')
+Category.create( name: 'Other')

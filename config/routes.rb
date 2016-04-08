@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :comments, only: [ :index, :destroy, :create]
   resources :video
+  resources :categories, only: [ :index ]
   resources :users, only: [:show]
   put 'users/vote', to: 'users#vote'
   post 'users/get_id', to: 'users#get_id'

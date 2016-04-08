@@ -19,8 +19,9 @@ class CoursesController < ApplicationController
     authorize :courses
     course = current_user.courses.new(course_params)
     course.build_image(file: image_params)
+    course.category_ids = categories_params
+    course.tasks = Task.parsing_to_array(tasks_params)
     if course.save
-      course.tasks = Task.parsing_to_array(tasks_params)
       render_success
     else
       render_error_messages(course, 400)
@@ -39,6 +40,10 @@ class CoursesController < ApplicationController
 
   def tasks_params
     params[:tasks].values
+  end
+
+  def categories_params
+    params[:category_ids].values
   end
 
 end
