@@ -10,6 +10,16 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def destroy
+    subscription = Subscription.find(current_user.id)
+    course = subscription.courses.find(params[:id])
+    if subscription.courses.delete(course)
+      render json: {id: params[:course_id]}.to_json
+    else
+      render_error_messages(subscription, 400)
+    end
+  end
+
   def check_status
     if current_user.subscription.courses.find_by(id: course_id)
       render_success

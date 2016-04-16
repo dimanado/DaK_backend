@@ -21,6 +21,15 @@ class VideoController < ApplicationController
     end
   end
 
+  def destroy
+    video = Video.find(params[:id])
+    if video.delete
+      render json: {id: params[:id]}.to_json
+    else
+      render_error_messages(video, 400)
+    end
+  end
+
   def show
     render json: @video, serializer: VideoSerializer
   end
