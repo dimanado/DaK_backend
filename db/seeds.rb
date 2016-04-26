@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+User.where(email: 'testlecturer@mail.ru', nickname: 'lecturer').first_or_create(password: '123456789', provider: 'email')
+user = User.find_by(email: 'testlecturer@mail.ru')
+user.add_role :lecturer
+user.confirm!
+user.save
+
+User.where(email: 'testuser@mail.ru', nickname: 'Katya').first_or_create(password: '123456789', provider: 'email')
+userSecond = User.find_by(email: 'testuser@mail.ru')
+userSecond.add_role :user
+userSecond.confirm!
+userSecond.save
+
+User.where(email: 'testuser2@mail.ru', nickname: 'Alexandr').first_or_create(password: '123456789', provider: 'email')
+userSecond = User.find_by(email: 'testuser2@mail.ru')
+userSecond.add_role :user
+userSecond.confirm!
+userSecond.save
+
+Category.create( name: 'Mathematics')
+Category.create( name: 'Computer science')
+Category.create( name: 'Logic')
+Category.create( name: 'Physics')
+Category.create( name: 'Chemistry')
+Category.create( name: 'Art')
+Category.create( name: 'Other')
