@@ -17,6 +17,7 @@ gem 'thin'
 gem 'websocket-rails'
 gem 'config'
 gem 'mini_magick'
+gem 'virtus'
 
 
 group :development, :test do

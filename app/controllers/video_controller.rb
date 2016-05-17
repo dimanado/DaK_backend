@@ -12,12 +12,11 @@ class VideoController < ApplicationController
 
   def create
     authorize Video.new
-    video = @course.videos.new(video_params)
-    video.build_image(file: image_params)
-    if video.save
+    video_form = VideoForm.new(params)
+    if video_form.save(@course.id)
       render_success
     else
-      render_error_messages(video, 400)
+      render_error_messages(video_form, 400)
     end
   end
 
@@ -35,19 +34,6 @@ class VideoController < ApplicationController
   end
 
   private
-
-  def video_params
-    {
-      video: params[:file].tempfile,
-      format: params[:file].content_type,
-      name: params[:name],
-      description: params[:description]
-    }
-  end
-
-  def image_params
-    params[:image].tempfile
-  end
 
   def set_course
     @course = Course.find(params[:id_course])
