@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
+  before_action :set_course, only: [:destroy]
+
 
   def index
     if params[:all]
@@ -16,12 +18,8 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    course = Course.find(params[:id])
-    if course.delete
-      render json: {id: params[:id]}.to_json
-    else
-      render_error_messages(course, 400)
-    end
+    @course.delete ? render json: {id: params[:id]}.to_json :
+      render_error_messages(@course, 400)
   end
 
   def create
@@ -32,5 +30,11 @@ class CoursesController < ApplicationController
     else
       render_error_messages(course, 400)
     end
+  end
+
+  private
+
+  def set_course
+    @course = Course.find(params[:id])
   end
 end

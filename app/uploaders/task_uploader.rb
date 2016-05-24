@@ -1,9 +1,9 @@
 class TaskUploader < CarrierWave::Uploader::Base
   storage :file
 
-  def pre_limit file
+  def pre_limit(file)
     if file && file.size > 5.megabytes
-      raise Exception.new("too large")
+      raise RangeError.new("too large")
     end
     true
   end

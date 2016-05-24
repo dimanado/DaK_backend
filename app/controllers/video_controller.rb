@@ -1,6 +1,6 @@
 class VideoController < ApplicationController
   before_action :set_course, only: [:index, :create]
-  before_action :set_video, only: [:show]
+  before_action :set_video, only: [:show, :destroy]
   before_action :authenticate_user!, except: [ :index ]
 
 
@@ -21,12 +21,8 @@ class VideoController < ApplicationController
   end
 
   def destroy
-    video = Video.find(params[:id])
-    if video.delete
-      render json: {id: params[:id]}.to_json
-    else
-      render_error_messages(video, 400)
-    end
+    @video.delete ? render json: {id: params[:id]}.to_json :
+        render_error_messages(@video, 400)
   end
 
   def show

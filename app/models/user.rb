@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
   def vote_init(vote_type, item_id, item_type)
     case vote_type
       when 'like'
-        like = self.voted_up_on(item_id,item_type)
-        like ? like.delete : self.like(item_type,item_id)
+        like = voted_up_on(item_id,item_type)
+        like ? like.delete : like(item_type,item_id)
       when 'dislike'
-        dislike = self.voted_down_on(item_id,item_type)
-        dislike ? dislike.delete : self.dislike(item_type,item_id)
+        dislike = voted_down_on(item_id,item_type)
+        dislike ? dislike.delete : dislike(item_type,item_id)
     end
   end
 
