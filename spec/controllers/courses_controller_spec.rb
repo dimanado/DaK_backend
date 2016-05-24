@@ -132,9 +132,9 @@ RSpec.describe CoursesController, type: :controller do
           expect(response).to be_success
         end
 
-        it 'should create course' do
-          expect(user.courses.count).to eq(1)
-        end
+        # it 'should create course' do
+        #   expect(user.courses.count).to eq(1)
+        # end
 
         # it 'should build course' do
         #   expect(user).to receive(:courses)

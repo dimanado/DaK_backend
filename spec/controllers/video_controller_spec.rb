@@ -55,6 +55,8 @@ RSpec.describe VideoController, :type => :controller do
 
     let(:do_request) { get :show, id: video.id }
     let!(:video) { FactoryGirl.create(:video_with_image) }
+    let!(:course) { FactoryGirl.create(:course) }
+
 
     context 'when user loged in' do
       let(:video_fields) { ['id', 'name', 'url', 'format', 'description', 'image'] }
@@ -62,6 +64,7 @@ RSpec.describe VideoController, :type => :controller do
 
       before do
         sign_in(user)
+        course.videos << video
         do_request
       end
 

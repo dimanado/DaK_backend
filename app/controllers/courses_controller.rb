@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
+  before_action :set_course, only: [:destroy]
+
 
   def index
     if params[:all]
@@ -15,11 +17,15 @@ class CoursesController < ApplicationController
   def show
   end
 
+  def destroy
+    @course.delete ? render json: {id: params[:id]}.to_json :
+      render_error_messages(@course, 400)
+  end
+
   def create
     authorize :courses
-    course = current_user.courses.new(course_params)
-    course.build_image(file: image_params)
-    if course.save
+    course_form = CourseForm.new(params)
+    if course_form.save(current_user.id)
       render_success
     else
       render_error_messages(course, 400)
@@ -28,12 +34,7 @@ class CoursesController < ApplicationController
 
   private
 
-  def course_params
-    params.permit(:name, :description)
+  def set_course
+    @course = Course.find(params[:id])
   end
-
-  def image_params
-    params[:image].tempfile
-  end
-
 end
