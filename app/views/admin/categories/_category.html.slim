@@ -1,0 +1,8 @@
+tr class=("#{category.id}_category")
+  td
+    = label_tag "#{category_counter + 1}"
+  td
+    = label_tag "#{category.name}"
+  td
+    = link_to 'Удалить', admin_category_path(id: category.id), method: :delete, remote: true, class: 'action_link'
+

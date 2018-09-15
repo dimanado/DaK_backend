@@ -1,0 +1,10 @@
+table.table.table-hover
+  caption
+    = t :Категория
+  thead
+    tr
+      th #
+      th Название
+    tbody
+      = render partial: 'category', collection: @categories.order('id ASC')
+= button_to "Добавить", action: "new"

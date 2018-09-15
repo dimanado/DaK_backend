@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="Absolute-Center is-Responsive">
+      <div class="col-sm-12 col-md-10 col-md-offset-11">
+		<%= simple_form_for :session, :url => sessions_path do |f| %>
+		  <%= f.label :email, 'Email', class: 'lable' %>
+		  <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>   
+          </div>
+		  <%= f.label :password, 'Пароль', class: 'lable' %>
+		  <div class="form-group input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Пароль' %>
+          </div>
+		  <div class="form-group">
+		    <%= f.button :submit, 'Вход', class: "btn btn-def btn-block" %>
+		  </div>
+		<% end %>
+      </div>  
+    </div>    
+  </div>
+</div>
+
+
+
+
+

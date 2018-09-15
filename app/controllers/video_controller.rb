@@ -21,7 +21,7 @@ class VideoController < ApplicationController
   end
 
   def destroy
-    @video.delete ? render json: {id: params[:id]}.to_json :
+    @video.delete ? (render json: ({id: params[:id]}.to_json)) :
         render_error_messages(@video, 400)
   end
 

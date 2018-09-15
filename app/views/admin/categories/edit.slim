@@ -1,0 +1,8 @@
+.item_form
+  .link_back_form
+    = link_to('', :back, class: 'glyphicon glyphicon-arrow-left glyph_link')
+  .row
+    .col-md-5
+      = simple_form_for(@category, url: admin_category_url(@category), authenticity_token: true) do |f|
+        = f.input :name, label: 'Название'
+        = f.button :submit, 'Обновить'

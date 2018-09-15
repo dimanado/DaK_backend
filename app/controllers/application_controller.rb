@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
-  include DeviseTokenAuth::Concerns::SetUserByToken
+  #include DeviseTokenAuth::Concerns::SetUserByToken
   include Pundit
 
-  protect_from_forgery with: :null_session
+  #protect_from_forgery with: :null_session
 
   rescue_from ActionController::ParameterMissing, with: :invalid_params
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -28,5 +28,16 @@ class ApplicationController < ActionController::Base
 
   def not_authorized
     render json: { errors: "Not allowed" }, status: 403, head: 403
+  end
+
+  private
+
+  def current_user
+    @current_user ||= Admin.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+
+  def authorize
+    redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
 end

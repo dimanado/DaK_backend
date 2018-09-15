@@ -3,8 +3,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:destroy]
 
   def destroy
-    @task.delete ? render json: {id: params[:id]}.to_json :
+      if @task.delete
+        render json: {id: params[:id]}.to_json
+      else
         render_error_messages(@task, 400)
+      end
   end
 
   def create

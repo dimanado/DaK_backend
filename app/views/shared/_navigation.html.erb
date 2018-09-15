@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <div id="logo-container"></div>
+    </div>
+    <div class="navbar-brand">DaK</div>
+    <ul class="row nav nav-pills">
+      <% if current_user %>
+      <li class="<%= 'active' if (params[:controller] == 'admin/users') %>"><%= link_to "Пользователи", admin_users_path %></li>
+      <li class="<%= 'active' if (params[:controller] == 'admin/categories') %>"><%= link_to "Категории", admin_categories_path %></li>
+      <div class="nav navbar-nav navbar-right">
+        <%= current_user.email %> | <%= link_to "Выйти", logout_path %>
+      </div>
+      <% end %>
+    </ul>
+  </div>
+</nav>

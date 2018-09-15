@@ -1,0 +1,12 @@
+table.table.table-hover
+  caption
+    = t :Пользователь
+  thead
+    tr
+      th #
+      th Блок
+      th Email
+    tbody
+      = render partial: 'user', collection: @users.order('id ASC')
+br
+  = will_paginate @users, :renderer => BootstrapPagination::Rails

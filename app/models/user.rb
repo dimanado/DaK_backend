@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_one :subscription
   has_and_belongs_to_many :tasks
 
+  acts_as_messageable
+
   before_create :default_users_role, :add_subscription
 
 
@@ -29,21 +31,21 @@ class User < ActiveRecord::Base
 
   def voted_up_on(item_id, item_type)
     Vote.find_by(user_id: self.id, votable_id: item_id,
-            votable_type: item_type, vote_flag: true)
+            votable_type: item_type.downcase, vote_flag: true)
   end
 
   def voted_down_on(item_id, item_type)
     Vote.find_by(user_id: self.id, votable_id: item_id,
-            votable_type: item_type, vote_flag: false)
+            votable_type: item_type.downcase, vote_flag: false)
   end
 
   def like(type,id)
-    vote = Vote.create(votable_id: id, votable_type: type, vote_flag: true)
+    vote = Vote.create(votable_id: id, votable_type: type.downcase, vote_flag: true)
     self.votes << vote
   end
 
   def dislike(type,id)
-    vote = Vote.create(votable_id: id, votable_type: type, vote_flag: false)
+    vote = Vote.create(votable_id: id, votable_type: type.downcase, vote_flag: false)
     self.votes << vote
   end
 
@@ -53,6 +55,10 @@ class User < ActiveRecord::Base
 
   def add_subscription
     self.subscription = Subscription.create!
+  end
+
+  def mailboxer_email(object)
+    email
   end
 
 end

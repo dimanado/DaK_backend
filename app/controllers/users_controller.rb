@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     render json: current_user, serializer: UsersSerializer
   end
 
+  def index
+    @users = User.all
+    render json: @users, serializer: UsersSerializer
+  end
+
   def get_id
     render json: {id: @user.id}.to_json
   end
@@ -17,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def vote
-    @item = params[:item_type].capitalize!.try(safe_constantize).try(find(params[:id]))
+    @item = params[:item_type].capitalize!.safe_constantize.find(params[:id])
     current_user = User.find_by(email: params[:user_email])
     current_user.vote_init(params[:vote_type], params[:id], params[:item_type])
     render json: @item, serializer: VoteVideoSerializer

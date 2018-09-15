@@ -12,4 +12,12 @@ class Task < ActiveRecord::Base
     course.tasks.push(*tasks)
     tasks
   end
+
+  def self.parsing_to_array(items)
+    tasks = []
+    items.each do |item_name|
+      tasks << Task.find_by(name: item_name)
+    end
+    tasks
+  end
 end

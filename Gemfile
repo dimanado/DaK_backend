@@ -2,8 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.2'
 gem 'pg'
+gem 'mysql2', '~> 0.3.18'
 gem 'rolify'
 gem 'devise'
+gem 'bcrypt'
+gem 'simple_form'
+gem 'bootstrap-sass'
+gem 'sass-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'turbolinks'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'rack-cors', :require => 'rack/cors'
@@ -18,6 +26,12 @@ gem 'websocket-rails'
 gem 'config'
 gem 'mini_magick'
 gem 'virtus'
+gem 'mailboxer'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+gem 'slim-rails'
+
+
 
 
 group :development, :test do
@@ -26,6 +40,7 @@ group :development, :test do
   gem 'spring'
   gem 'pry-byebug'
   gem 'rails-erd'
+  gem 'railroady'
 end
 
 group :test do

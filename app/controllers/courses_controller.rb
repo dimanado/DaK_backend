@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
   before_action :set_course, only: [:destroy]
+  skip_before_filter  :verify_authenticity_token
 
 
   def index
@@ -18,7 +19,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course.delete ? render json: {id: params[:id]}.to_json :
+    @course.delete ? (render json: ({id: params[:id]}.to_json)) :
       render_error_messages(@course, 400)
   end
 

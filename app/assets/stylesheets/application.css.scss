@@ -1,0 +1,75 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require jquery-ui
+ *= require 'style'
+ *= require_tree .
+ *= require_self
+ */
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; 
+  right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%; 
+  height: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+  margin: 100px;
+}
+
+.div.navbar-brand {
+  color: black;
+  font-weight: bold;
+  margin-right: 0px;
+  width:100px;
+  height:50px;
+}
+
+.nav.navbar-nav.navbar-right {
+  margin-top: 10px;
+}
+
+.row.nav.nav-pills {
+  margin:5px 5px 5px 250px;
+}
+
+.nav-pills > li.active > a {
+    background-color:#A9A9A9;
+}
+
+.nav-pills>li.active>a:hover {
+    background-color:#A9A9A9;
+}
+.img-rounded {
+  width: 200px;
+  height:200px;
+}
+.action_link {
+  margin-left: 5px
+}
+
+
+
+

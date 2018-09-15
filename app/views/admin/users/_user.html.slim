@@ -1,0 +1,9 @@
+tr.info id=user.id
+  td
+    = label_tag "#{user_counter + @per_page.to_i * (@page.to_i - 1) + 1}"
+  td
+    = check_box_tag 'accept'
+  td
+    = label_tag "#{user.email}"
+  td
+    = link_to 'Редактировать', edit_admin_user_path(user.id)

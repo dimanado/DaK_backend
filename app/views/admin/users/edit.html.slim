@@ -1,0 +1,10 @@
+.item_form
+  .link_back_form
+    = link_to('', :back, class: 'glyphicon glyphicon-arrow-left glyph_link')
+  .row
+    .col-md-5
+      = simple_form_for(@user, url: admin_user_url(@user), authenticity_token: true) do |f|
+        = f.input :email, label: 'Email'
+        = label_tag 'Роль'
+        = f.select(:role, Role.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })
+        = f.button :submit, 'Обновить'
